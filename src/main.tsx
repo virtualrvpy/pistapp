@@ -38,7 +38,7 @@ function App() {
   const signIn=async(e:React.FormEvent)=>{e.preventDefault();if(!supabase){setMessage('Configuración de Supabase pendiente.');return}setBusy(true);const {error}=await supabase.auth.signInWithPassword({email,password});setMessage(error?.message||'');setBusy(false)}
   useEffect(()=>localStorage.setItem('pista-trainings',JSON.stringify(trainings)),[trainings])
   useEffect(()=>localStorage.setItem('pista-pbs',JSON.stringify(pbs)),[pbs])
-  const today=trainings[0]
+  const today=trainings[0] || {id:'empty',date:new Date().toISOString().slice(0,10),title:'Todavía no hay entrenamientos',distance:0,reps:0,micro:'—',macro:'—',pace:'—',feeling:0,notes:''}
   const donePB=pbs.filter(p=>p.time).length
   const saveTraining=(data:Training)=>{ setTrainings(x=>[data,...x]); if(supabase&&user)void supabase.from('trainings').insert({date:data.date,title:data.title,distance:data.distance,reps:data.reps,micro_pause:data.micro,macro_pause:data.macro,target_pace:data.pace,feeling:data.feeling,notes:data.notes}).then(({error})=>error&&setMessage('Error al sincronizar entrenamiento.'));setOpen(false);setTab('trainings') }
   return <main className="shell">
