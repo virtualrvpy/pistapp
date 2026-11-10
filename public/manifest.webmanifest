@@ -1,6 +1,6 @@
 {
   "name": "Pista", "short_name": "Pista", "start_url": ".", "display": "standalone",
   "background_color": "#090909", "theme_color": "#090909",
-  "icons": [{ "src": "/pista.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+  "icons": [{ "src": "./pista.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }
 
